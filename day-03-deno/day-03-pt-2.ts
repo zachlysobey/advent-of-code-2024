@@ -14,7 +14,7 @@ export const partTwo = (rawInput: string) => {
   );
   let sum = 0;
   let enabled = true;
-  const sequenceResults = uncorruptedSequences.forEach((sequence) => {
+  uncorruptedSequences.forEach((sequence) => {
     if (sequence.includes("mul") && enabled) {
       sum += executeMulSequence(sequence);
     } else if (sequence === "don't()") {

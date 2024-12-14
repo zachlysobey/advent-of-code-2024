@@ -59,7 +59,7 @@ const isReportSafe: Predicate<Report> = (report) => {
 const countMatchingPredicate = <T>(predicate: Predicate<T>) => {
   return (values: T[]): number => {
     return values.reduce(
-      (acc, value, index) => {
+      (acc, value) => {
         return predicate(value) ? acc + 1 : acc;
       },
       0,
