@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["deno.ns"],
+    "allowJs": false
+  },
+  "lint": {
+    "rules": {
+      "include": ["src/**/*.ts"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["src/**/*.ts"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  },
+  "tasks": {
+    "test": "deno test --unstable --allow-all",
+    "cache": "deno cache deps.ts"
+  }
+}
