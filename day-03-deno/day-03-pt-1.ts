@@ -6,13 +6,13 @@ const executeMulSequence = (mulSequence: string): number => {
     throw new Error(`Invalid mul sequence: ${mulSequence}`);
   }
   return Number(x) * Number(y);
-}
+};
 
-const sum = (numbers: number[]): number => numbers.reduce((acc, n) => acc + n, 0);
-
+const sum = (numbers: number[]): number =>
+  numbers.reduce((acc, n) => acc + n, 0);
 
 export const partOne = (rawInput: string) => {
   const uncorruptedMulSequences = scanForUncorruptedMulSequences(rawInput);
   const mulSequenceResults = uncorruptedMulSequences.map(executeMulSequence);
-  return sum(mulSequenceResults)
-}
+  return sum(mulSequenceResults);
+};

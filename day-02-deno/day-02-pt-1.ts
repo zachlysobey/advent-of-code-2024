@@ -1,23 +1,25 @@
 export {}; // make this a module
 
-const INPUT_FILE_NAME = './input.txt';
+const INPUT_FILE_NAME = "./input.txt";
 
 const getRawInput = async (fileName: string): Promise<string> => {
   const rawInput = await Deno.readTextFile(fileName);
   return rawInput;
-}
+};
 
 type Report = number[];
 
 const parseInput = (rawInput: string): Report[] => {
   return rawInput.trim().split("\n").reduce<Report[]>(
     (reports, line) => {
-      const values = line.trim().split(/\s+/).map((value) => parseInt(value.trim()));
+      const values = line.trim().split(/\s+/).map((value) =>
+        parseInt(value.trim())
+      );
       return reports.concat([values]);
     },
     [],
   );
-}
+};
 
 type Predicate<T> = (value: T) => boolean;
 
@@ -51,10 +53,8 @@ const isReportSafe: Predicate<Report> = (report) => {
       true,
     );
   }
-  throw new Error('Invalid report');
+  throw new Error("Invalid report");
 };
-
-
 
 const countMatchingPredicate = <T>(predicate: Predicate<T>) => {
   return (values: T[]): number => {
@@ -62,8 +62,8 @@ const countMatchingPredicate = <T>(predicate: Predicate<T>) => {
       (acc, value, index) => {
         return predicate(value) ? acc + 1 : acc;
       },
-      0
-    )
+      0,
+    );
   };
 };
 

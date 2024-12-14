@@ -32,18 +32,22 @@ const createOccurrenceMap = (list: LocationId[]): Map<LocationId, number> => {
     acc.set(id, count + 1);
     return acc;
   }, new Map());
-}
+};
 
-const calculateSimilarityScore = (locationLists: HistorianLocationLists): number => {
+const calculateSimilarityScore = (
+  locationLists: HistorianLocationLists,
+): number => {
   const list2OccurrenceMap = createOccurrenceMap(locationLists[1]);
   return locationLists[0].reduce<number>((acc, id) => {
     return acc + id * (list2OccurrenceMap.get(id) ?? 0);
   }, 0);
-}
+};
 
-void async function main () {
+void async function main() {
   const rawInput: string = await Deno.readTextFile("./input.txt");
-  const locationLists: HistorianLocationLists = parseHistorianLocationLists(rawInput);
-  const similarityScore: number = calculateSimilarityScore(locationLists)
+  const locationLists: HistorianLocationLists = parseHistorianLocationLists(
+    rawInput,
+  );
+  const similarityScore: number = calculateSimilarityScore(locationLists);
   console.log(similarityScore);
 }();

@@ -6,20 +6,22 @@ const executeMulSequence = (mulSequence: string): number => {
     throw new Error(`Invalid mul sequence: ${mulSequence}`);
   }
   return Number(x) * Number(y);
-}
+};
 
 export const partTwo = (rawInput: string) => {
-  const uncorruptedSequences = scanForUncorruptedConditionalMulSequences(rawInput);
+  const uncorruptedSequences = scanForUncorruptedConditionalMulSequences(
+    rawInput,
+  );
   let sum = 0;
   let enabled = true;
   const sequenceResults = uncorruptedSequences.forEach((sequence) => {
-    if (sequence.includes('mul') && enabled) {
+    if (sequence.includes("mul") && enabled) {
       sum += executeMulSequence(sequence);
-    } else if (sequence === 'don\'t()') {
+    } else if (sequence === "don't()") {
       enabled = false;
-    } else if (sequence === 'do()') {
+    } else if (sequence === "do()") {
       enabled = true;
     }
   });
   return sum;
-}
+};
